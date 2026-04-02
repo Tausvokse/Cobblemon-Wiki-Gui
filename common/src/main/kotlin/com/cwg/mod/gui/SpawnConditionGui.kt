@@ -32,20 +32,20 @@ object SpawnConditionGui {
 
     fun open(species: FormData, player: ServerPlayer, page: Int = 0): SimpleGui {
         val gui = SimpleGui(MenuType.GENERIC_9x4, player, false)
-        val redPane = GuiHelper.RED_PANE
+        val framePane = GuiHelper.FRAME_PANE
 
-        gui.title = Component.literal("Spawn Conditions").red()
+        gui.title = Component.literal(lang.spawnConditionsTitle).red()
 
         val spawnConditionButtons: MutableList<GuiElement> = mutableListOf()
 
         getSpawnDetails(species).forEach { s ->
             val lore: MutableList<Component> = ArrayList()
-            addConditionSection(lore, "Conditions: ", s.conditions)
-            addConditionSection(lore, "Anti-Conditions: ", s.anticonditions)
+            addConditionSection(lore, lang.conditionsLabel, s.conditions)
+            addConditionSection(lore, lang.antiConditionsLabel, s.anticonditions)
 
 
             val spawnTimes = CobblemonUtil.getSpawnTime(s.conditions)
-            lore.add("Time: ".blue())
+            lore.add(lang.timeLabel.blue())
             spawnTimes.forEach { time -> lore.add("- ".text().yellow().append(time))}
 
 
@@ -106,7 +106,7 @@ object SpawnConditionGui {
             if (totalPages > 1) {
                 val pageIndicator = GuiHelper
                     .createEmptyButton(Items.BOOK.defaultInstance)
-                    .setName(Component.literal("Current page ${currentPage + 1}/${totalPages}").yellow())
+                    .setName(lang.currentPage.format(currentPage + 1, totalPages).text().yellow())
                     .build()
                 gui.setSlot(22, pageIndicator)
             }
@@ -124,7 +124,7 @@ object SpawnConditionGui {
 
         for (i in 0 until gui.size) {
             if (gui.getSlot(i) == null) {
-                gui.setSlot(i, redPane)
+                gui.setSlot(i, framePane)
             }
         }
 
