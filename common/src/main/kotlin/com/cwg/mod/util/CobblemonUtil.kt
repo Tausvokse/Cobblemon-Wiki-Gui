@@ -256,7 +256,7 @@ object CobblemonUtil {
         }
 
         if (loreRequirements.isEmpty()) {
-            loreRequirements.add("No requirements".text())
+            loreRequirements.add(lang.noRequirements.text())
         }
 
         return loreRequirements
@@ -665,7 +665,7 @@ object CobblemonUtil {
 
     fun getDynamax(formData: FormData): MutableList<Component> {
         val payload: MutableList<Component> = ArrayList()
-        val textFormated = if (formData.species.canGmax())  "Yes".yellow() else "Not".yellow()
+        val textFormated = if (formData.species.canGmax())  lang.yes.yellow() else lang.no.yellow()
         payload.add(textFormated)
         return payload
     }

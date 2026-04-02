@@ -19,7 +19,9 @@ import net.minecraft.world.item.Items
 
 object PokeWikiGui {
     val lang = CobblemonWikiGui.langConfig
-    private val redPane: GuiElement = GuiHelper.RED_PANE
+    private val framePane: GuiElement = GuiHelper.FRAME_PANE
+    private val sectionPane: GuiElement = GuiHelper.SECTION_PANE
+    private val backgroundPane: GuiElement = GuiHelper.BACKGROUND_PANE
     fun open(formData: FormData, playerEntity: ServerPlayer): SimpleGui {
 
         val content = contentMain(formData, playerEntity)
@@ -33,15 +35,15 @@ object PokeWikiGui {
             WikiGuiTitle.build(formData.name, formData.species.standardForm.name, formData.species.translatedName.string)
         ).red()
 
-        GuiHelper.setLine(GuiHelper.LineType.HORIZONTAL,gui, 0, 0, 8, redPane)
-        GuiHelper.setLine(GuiHelper.LineType.VERTICAL, gui, 0, 1, 3, redPane)
-        GuiHelper.setLine(GuiHelper.LineType.HORIZONTAL, gui, 4, 0, 8, redPane)
+        GuiHelper.setLine(GuiHelper.LineType.HORIZONTAL,gui, 0, 0, 8, framePane)
+        GuiHelper.setLine(GuiHelper.LineType.VERTICAL, gui, 0, 1, 3, framePane)
+        GuiHelper.setLine(GuiHelper.LineType.HORIZONTAL, gui, 4, 0, 8, framePane)
         gui.setSlot(48, createRelativeButton(formData, -1).build())
         gui.setSlot(49, GuiHelper.createPokemonButton(formData).build())
         gui.setSlot(50, createRelativeButton(formData, +1).build())
-        GuiHelper.setLine(GuiHelper.LineType.VERTICAL, gui, 8, 1, 3, redPane)
-        GuiHelper.setLine(GuiHelper.LineType.HORIZONTAL, gui, 5, 0, 2, redPane)
-        GuiHelper.setLine(GuiHelper.LineType.HORIZONTAL, gui, 5, 6, 8, redPane)
+        GuiHelper.setLine(GuiHelper.LineType.VERTICAL, gui, 8, 1, 3, framePane)
+        GuiHelper.setLine(GuiHelper.LineType.HORIZONTAL, gui, 5, 0, 2, sectionPane)
+        GuiHelper.setLine(GuiHelper.LineType.HORIZONTAL, gui, 5, 6, 8, sectionPane)
 
         for (j in content.indices) {
             gui.setSlot(CONTENT_SPACE[j], content[j])
@@ -49,7 +51,7 @@ object PokeWikiGui {
 
         for (i in 0 until gui.size) {
             if (gui.getSlot(i) == null) {
-                gui.setSlot(i, redPane)
+                gui.setSlot(i, backgroundPane)
             }
         }
 
@@ -83,7 +85,7 @@ object PokeWikiGui {
                     }
                 }
         }
-        return GuiHelper.createEmptyButton(redPane.itemStack)
+        return GuiHelper.createEmptyButton(framePane.itemStack)
     }
 
     private fun contentMain(species: FormData, serverPlayerEntity: ServerPlayer): Array<GuiElement?> {

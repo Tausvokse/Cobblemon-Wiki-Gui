@@ -13,7 +13,9 @@ import net.minecraft.world.level.block.Blocks
 
 object GuiHelper {
 
-    val RED_PANE: GuiElement = createEmptyButton(ItemStack(Blocks.RED_STAINED_GLASS_PANE, 1)).build()
+    val FRAME_PANE: GuiElement = createEmptyButton(ItemStack(Blocks.BLACK_STAINED_GLASS_PANE, 1)).build()
+    val SECTION_PANE: GuiElement = createEmptyButton(ItemStack(Blocks.GRAY_STAINED_GLASS_PANE, 1)).build()
+    val BACKGROUND_PANE: GuiElement = createEmptyButton(ItemStack(Blocks.TINTED_GLASS, 1)).build()
 
     enum class LineType {
         HORIZONTAL,

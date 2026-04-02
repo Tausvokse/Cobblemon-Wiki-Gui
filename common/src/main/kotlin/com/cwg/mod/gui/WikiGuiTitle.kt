@@ -13,9 +13,9 @@ object WikiGuiTitle {
     fun build(formName: String, standardFormName: String, speciesDisplayName: String): String {
         return if (formName != standardFormName) {
             val formDisplayName = formName.replaceFirstChar { it.uppercase() }
-            "Cobblemon Wiki - $speciesDisplayName ($formDisplayName)"
+            "ПокеВики - $speciesDisplayName ($formDisplayName)"
         } else {
-            "Cobblemon Wiki"
+            "ПокеВики"
         }
     }
 }
